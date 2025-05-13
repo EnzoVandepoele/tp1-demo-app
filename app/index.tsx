@@ -1,30 +1,50 @@
-// import { Button } from "@react-navigation/elements";
-import { useState } from "react";
-import { Switch, Text, View, Button } from "react-native";
 import { AppButton } from "@/lib/components/app-button";
+import { Stack, useRouter } from "expo-router";
+import { ScrollView, View, Text, StyleSheet } from "react-native";
 
-export default function Index() {
-  const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
-  
+export default function IndexScreen() {
+  const router = useRouter();
+
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        gap: "20px"
-      }}
-    >
-      <Text>I love cats.</Text>
-      <Button title="A title"></Button>
-      <AppButton
-        label="Alerte Basique"
-        onPress={() => alert('Mon alerte')}
-      />
-      <Switch
-        onValueChange={toggleSwitch} value={isEnabled}
-      ></Switch>
-    </View>
+    <ScrollView style={{ gap: 16, padding: 16 }}>
+	    <Stack.Screen options={{
+        title: "Accueil",
+        headerTitleAlign: "center"
+      }} />
+    
+      {/* Bases */}
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>
+	        Bases
+	      </Text>
+
+        <AppButton
+          label='Composants de base'
+          onPress={() => router.push('/bases/components')}
+        />
+
+        <AppButton
+          label='Formulaires'
+          onPress={() => router.push('/bases/form')}
+        />
+
+        <AppButton
+          label='Mise en page'
+          onPress={() => router.push('/bases/layout')}
+        />
+      </View>
+    </ScrollView>
   );
 }
+
+const styles = StyleSheet.create({
+  section: {
+    marginBottom: 32,
+    width: '100%',
+    gap: 16
+  },
+  sectionTitle: {
+    fontSize: 16,
+    fontWeight: "600"
+  },
+});
