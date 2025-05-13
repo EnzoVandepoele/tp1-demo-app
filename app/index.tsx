@@ -1,7 +1,12 @@
-import { Button } from "@react-navigation/elements";
-import { Switch, Text, View } from "react-native";
+// import { Button } from "@react-navigation/elements";
+import { useState } from "react";
+import { Switch, Text, View, Button } from "react-native";
+import { AppButton } from "@/lib/components/app-button";
 
 export default function Index() {
+  const [isEnabled, setIsEnabled] = useState(false);
+  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+  
   return (
     <View
       style={{
@@ -11,9 +16,15 @@ export default function Index() {
         gap: "20px"
       }}
     >
-      <Text>Edit app/index.tsx to edit this screen.</Text>
-      <Button>Cliiiiiiiiiick</Button>
-      <Switch></Switch>
+      <Text>I love cats.</Text>
+      <Button title="A title"></Button>
+      <AppButton
+        label="Alerte Basique"
+        onPress={() => alert('Mon alerte')}
+      />
+      <Switch
+        onValueChange={toggleSwitch} value={isEnabled}
+      ></Switch>
     </View>
   );
 }
