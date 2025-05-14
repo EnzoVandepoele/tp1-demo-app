@@ -18,7 +18,7 @@ type Props = {
   /**
    * La fonction qui sera appellée lorsque l'on clique sur le bouton 
    */
-  onPress?: () => {},
+  onPress?: () => void,
   /**
    * Des styles additionnels optionnels que nous pourront donner au bouton au besoin
    */
@@ -30,11 +30,11 @@ type Props = {
  */
 export const AppButton: FC<Props> = function (props) {
     return <Pressable
+        onPress={props.onPress}
         style={ ({ pressed }) => [
             styles.button,
             pressed && styles.pressedButton,
         ] }
-        onPress={props.onPress}
         >
         <Text style={styles.label}>
             {props.label}
