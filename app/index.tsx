@@ -33,6 +33,34 @@ export default function IndexScreen() {
           onPress={() => router.push('/bases/layout')}
         />
       </View>
+
+      {/* Navigation */}
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>Navigation</Text>
+
+        <AppButton
+          label='Stack'
+          onPress={() => router.push('/nav/stack')}
+        />
+
+        <AppButton
+          label='Not found'
+          onPress={() => router.push(
+            // @ts-ignore
+            '/nav/un-chemin-qui-existe-pas'
+          )}
+        />
+
+        <AppButton
+          label='Modales'
+          onPress={() => router.push('/nav/modals')}
+        />
+
+        <AppButton
+          label='Tabs'
+          onPress={() => router.push('/nav/tabs')}
+        />
+      </View>
     </ScrollView>
   );
 }
